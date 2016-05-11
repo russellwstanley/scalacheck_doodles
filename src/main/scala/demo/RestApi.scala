@@ -2,10 +2,15 @@ package demo
 
 import java.util.UUID
 
+object RestApi{
+
+  var state = Map[String,Int]()
+
+}
+
 class RestApi {
 
 
-  var state = Map[String,Int]()
 
 //  def POST(item : Int) : String = {
 //    val key = UUID.randomUUID().toString
@@ -14,17 +19,17 @@ class RestApi {
 //  }
 
   def PUT(id : String, item : Int) : String = {
-    state = state + (id ->item)
+    RestApi.state = RestApi.state + (id ->item)
     id
   }
 
   def GET(id : String) : Int  = {
-    state.get(id).get
+    RestApi.state.get(id).get
   }
 
   def DELETE(id : String) : Boolean = {
-    val exists = state.contains(id)
-    state = state - id
+    val exists = RestApi.state.contains(id)
+    RestApi.state = RestApi.state - id
     return exists
   }
 
